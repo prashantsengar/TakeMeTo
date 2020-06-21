@@ -22,7 +22,7 @@ def get_total(category=0):
     return my_contract.gettotal(category, {'from': accounts[0]})
 
 def submit_url(category: int, url: str, title: str, submitter: str):
-    my_contract.submitUrl(category, url, rating, title, submitter, {'from': accounts[0]})
+    my_contract.submitUrl(category, url, title, submitter, {'from': accounts[0]})
 
 def get_url(ID: int, category=0):
     return my_contract.getURL(ID, category, {'from': accounts[0]})
