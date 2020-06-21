@@ -12,9 +12,12 @@ def home():
 @app.route('/submit', methods=['POST'])
 def submiturl():
     url = request.args.get('url')
+    app.logger.warning(url)
     title = request.args.get('title', '')
+    app.logger.warning(title)
     submitter = block.CONTRACT_ADDRESS
     category = int(request.args.get('category'))
+    app.logger.warning(category)
     if not 1<=category<=6:
         return jsonify({'success': False, 'message':'category should be between 1 and 6'})
 
@@ -101,4 +104,4 @@ def is_staked():
 
 if __name__=='__main__':
 
-    app.run('0.0.0.0', port=8080, debug=True)
+    app.run('localhost', port=8080, debug=True)

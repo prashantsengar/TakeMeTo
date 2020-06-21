@@ -1,2 +1,2 @@
 Flask
-brownie-eth
+eth-brownie
