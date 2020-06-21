@@ -87,7 +87,7 @@ def claim_reward():
 
 
 @app.route('/isstaked', methods=['GET'])
-def claim_reward():
+def is_staked():
     ID = int(request.args.get('ID'))
 
     try:
@@ -97,3 +97,8 @@ def claim_reward():
         return jsonify({'success': False, 'message':'blockchain error', 'error':e})
 
     return jsonify({'success': True, 'status':status})
+
+
+if __name__=='__main__':
+
+    app.run('0.0.0.0', port=8080, debug=True)
