@@ -7,7 +7,7 @@ Websites like StumbleUpon and Digg worked well in the beginning but now they are
 
 2. **Rewards** - The problem with mainstream social media is that they use people to curate content from them and then do not reward their users with anything. TakeMeTo rewards users who post quality links by rewarding them with TM2 tokens. Community members who participate in the staking process also receive rewards for their contribution.
 
-3. **Reputaion** - Users who contribute well to the service are rewarded with reputation points and their voting value becomes higher.
+3. **Reputation** - Users who contribute well to the service are rewarded with reputation points and their voting value becomes higher.
 
 All of our points make sure that the quality of the content that we have on the system is top-notch and spam-free.
 
@@ -16,17 +16,62 @@ API: http://takemeto.us-east-1.elasticbeanstalk.com/
 
 ### API endpoints (Public)
 
-- **submit**
+- **submit**: Submit a URL
     /submit?url=&title=&submitter=&category=
     
     [REQUIRED]
+    
     category [int]
+    
     url [str]
+    
     title [str]
+    
     submitter [ethereum wallet address as str]
     
-- **takemeto**
+    
+- **takemeto**: Return a random website
     /takemeto?category=
     
     [OPTIONAL]
+    
     category [int]
+
+- **vote**: Stake on a submitted URL
+    /vote
+    
+    [REQUIRED]
+    
+    ID [int]
+    
+    addr [str]
+    
+    vote [bool]
+    
+    tokens [int]
+
+- **removestakes**: Remove stakes from a staked URL
+    /removestakes
+    
+    [REQUIRED]
+    
+    ID [int]
+    
+    addr [str]
+    
+- **claimreward**: Claim your rewards after staking process
+    /removestakes
+    
+    [REQUIRED]
+    
+    ID [int]
+    
+    addr [str]
+
+- **isstaked**: Check if the given URL is under staking or not
+    /removestakes
+    
+    [REQUIRED]
+    
+    ID [int]
+    
