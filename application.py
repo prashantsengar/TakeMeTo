@@ -29,7 +29,7 @@ def submiturl():
 
 
 @app.route('/takemeto', methods=['GET'])
-def submiturl():
+def geturl():
     category = request.args.get('category', 0)
 
     ID = utils.choose_random_ID(category)
@@ -43,3 +43,44 @@ def submiturl():
         return jsonify({'success': False, 'message':'blockchain error'})
 
     return url
+
+@app.route('/vote', methods=['POST'])
+def vote():
+    ID = int(request.args.get('ID'))
+    up = bool(request.args.get('upvote'))
+    addr = request.args.get('addr')
+    tokens = int(request.args.get('votes'))
+
+    try:
+        url = block.cast_vote(ID, addr, up, tokens)
+    except Exception as e:
+        app.logger.error(e)
+        return jsonify({'success': False, 'message':'blockchain error', 'error':e})
+
+    return jsonify({'success': True, 'message':'successfully voted'})
+
+@app.route('/removestakes', methods=['POST'])
+def removestakes():
+    ID = int(request.args.get('ID'))
+    addr = request.args.get('addr')
+
+    try:
+        url = block.remove_stakes(ID, addr)
+    except Exception as e:
+        app.logger.error(e)
+        return jsonify({'success': False, 'message':'blockchain error', 'error':e})
+
+    return jsonify({'success': True, 'message':'successfully removed stakes'})
+
+@app.route('/claimreward', methods=['POST'])
+def claim_reward():
+    ID = int(request.args.get('ID'))
+    addr = request.args.get('addr')
+
+    try:
+        url = block.claim_reward(ID, addr)
+    except Exception as e:
+        app.logger.error(e)
+        return jsonify({'success': False, 'message':'blockchain error', 'error':e})
+
+    return jsonify({'success': True, 'message':'successfully removed stakes'})
