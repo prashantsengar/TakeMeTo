@@ -52,7 +52,7 @@ def vote():
     tokens = int(request.args.get('votes'))
 
     try:
-        url = block.cast_vote(ID, addr, up, tokens)
+        block.cast_vote(ID, addr, up, tokens)
     except Exception as e:
         app.logger.error(e)
         return jsonify({'success': False, 'message':'blockchain error', 'error':e})
@@ -65,7 +65,7 @@ def removestakes():
     addr = request.args.get('addr')
 
     try:
-        url = block.remove_stakes(ID, addr)
+        block.remove_stakes(ID, addr)
     except Exception as e:
         app.logger.error(e)
         return jsonify({'success': False, 'message':'blockchain error', 'error':e})
@@ -78,9 +78,22 @@ def claim_reward():
     addr = request.args.get('addr')
 
     try:
-        url = block.claim_reward(ID, addr)
+        block.claim_reward(ID, addr)
     except Exception as e:
         app.logger.error(e)
         return jsonify({'success': False, 'message':'blockchain error', 'error':e})
 
-    return jsonify({'success': True, 'message':'successfully removed stakes'})
+    return jsonify({'success': True, 'message':'successfully claimed reward'})
+
+
+@app.route('/isstaked', methods=['GET'])
+def claim_reward():
+    ID = int(request.args.get('ID'))
+
+    try:
+        status = block.staking_status(ID)
+    except Exception as e:
+        app.logger.error(e)
+        return jsonify({'success': False, 'message':'blockchain error', 'error':e})
+
+    return jsonify({'success': True, 'status':status})
