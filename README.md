@@ -14,7 +14,7 @@ All of our points make sure that the quality of the content that we have on the 
 
 Contract address: https://testnetv3-explorer.matic.network/tokens/0x14193B573fc6d6f98cb61b2112954213Db1d5FEe
 
-API: http://takemeto.us-east-1.elasticbeanstalk.com/
+API: [Non-functional currently]
 
 Demo: https://youtu.be/5YIu_i5U2o8
 
